@@ -1,0 +1,300 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title></title>
+    <meta charset="utf-8">
+    <link href="../Styles/main.css" rel="stylesheet">
+    <script>  //script >> window.onload (body)>> interval
+	    var preload = new Array(
+	  	  "../pic/lab4/p1.jpg",
+	  	  "../pic/lab4/p2.jpg",
+	  	  "../pic/lab4/p3.jpg",
+	  	  "../pic/lab4/p4.jpg",
+	  	  "../pic/lab4/p5.jpg",
+	  	  "../pic/lab4/p6.jpg",
+	  	  "../pic/lab4/p7.jpg");
+	    var preload_len = preload.length;
+	    
+	    var linker = new Array();
+	    linker[0] = "#";  //連結到自己
+	    linker[1] = "http://www.iiiedu.org.tw/taipei/";
+	    linker[2] = "https://tw.yahoo.com/";
+	    linker[3] = "https://www.google.com.tw/";
+	    linker[4] = "https://www.google.com.tw/";
+	    linker[5] = "https://www.google.com.tw/";
+	    linker[6] = "https://www.google.com.tw/";
+	   
+	   var ms=1500;
+      
+	    
+	    var posters = new Array();
+	    
+	    for(var p=0; p<preload.length; p++) {
+      
+	  	  posters[p] = new Image();
+	  	  posters[p].src=preload[p] ;
+	  	  posters[p].id='p'+p;
+	  	  posters[p].style="width: 100%;padding: 0px;margin: 0px auto -5px;bottom: 0px;cursor:pointer;";
+	  	  posters[p].onclick = function(){ location.href = linker[this.id.slice(-1)]; };
+	  	  
+	    }
+      
+      
+	    var pNex = new Array();
+	    pNex[0]= new Image();
+	    pNex[0].src="../pic/lab4/next.png";
+	    pNex[1]= new Image();
+	    pNex[1].src="../pic/lab4/next_bri.png";
+      
+	    var pPre = new Array();
+	    pPre[0]= new Image();
+	    pPre[0].src="../pic/lab4/previous.png";
+	    pPre[1]= new Image();
+	    pPre[1].src="../pic/lab4/previous_bri.png";
+      
+	    var pPau = new Array();
+	    pPau[0]= new Image();
+	    pPau[0].src="../pic/lab4/pause.png";
+	    pPau[1]= new Image();
+	    pPau[1].src="../pic/lab4/pause_bri.png";
+      
+	    var pPly= new Array();
+	    pPly[0]= new Image();
+	    pPly[0].src="../pic/lab4/play.png";
+	    pPly[1]= new Image();
+	    pPly[1].src="../pic/lab4/play_bri.png";
+	    
+	    var pmid= new Array();
+	    pmid=pPau;
+      var outclassName="";
+	    var i=0; 
+      
+    window.onload = function () {
+      
+        for (var j=1; j<=7;j++){
+            document.getElementById('picks').innerHTML += "<div id='pick" + (j - 1) + "'" + " class='pickout' onmouseenter='setImg(this)' >" + j + "</div>";
+			
+        }
+         document.getElementById('control').innerHTML="";
+        document.getElementById('control').innerHTML +="<div id='con" +   1 + "'" + " class='con'  >"+ "</div>";
+		document.getElementById('control').innerHTML +="<div id='con" +   2 + "'" + " class='con'  >"+ "</div>";
+		document.getElementById('control').innerHTML +="<div id='con" +   3 + "'" + " class='con'  >"+ "</div>";
+      
+        document.getElementById("con1").addEventListener("click",setImgleft );
+        document.getElementById("con1").onmouseover = overPrev;
+        document.getElementById("con1").onmouseout = outPrev;
+
+        document.getElementById("con2").addEventListener("click",stopImg );
+        document.getElementById("con2").onmouseover = overPau;
+        document.getElementById("con2").onmouseout = outPau;
+
+        document.getElementById("con3").addEventListener("click",setImgright );
+        document.getElementById("con3").onmouseover = overNext;
+        document.getElementById("con3").onmouseout = outNext;
+
+
+        document.getElementById('con1').appendChild(pPre[0]);
+        document.getElementById('con2').appendChild(pPau[0]);
+        document.getElementById('con3').appendChild(pNex[0]);
+
+        document.getElementById("my_div").innerHTML="";
+
+            document.getElementById("my_div").appendChild( posters[i] );
+            document.getElementById("pick"+i).className="pickon";
+            // i++;
+    }
+
+// 2# JavaScript (ease in and out):
+            // function scrollToTop(scrollDuration) {
+            //         const   scrollHeight = 507,
+            //         scrollStep = Math.PI / ( scrollDuration / 15 ),
+            //         cosParameter = scrollHeight / 2;
+            //         var     scrollCount = 0,
+            //         scrollMargin,
+            //         scrollInterval = setInterval( function() {
+            //             if ( window.scrollY != 0 ) {
+            //                 scrollCount = scrollCount + 1;  
+            //                 scrollMargin = cosParameter - cosParameter * Math.cos( scrollCount * scrollStep );
+            //                 window.scrollTo( 0, ( scrollHeight - scrollMargin ) );
+            //             } 
+            //             else clearInterval(scrollInterval); 
+            //         }, 15 );
+            // }
+
+        function overPrev() {
+            var list = document.getElementById("con1") ;
+            document.getElementById("con1").innerHTML="";
+            document.getElementById("con1").appendChild( pPre[1] );
+        }
+        function outPrev(){
+            var list = document.getElementById("con1") ;
+            document.getElementById("con1").innerHTML="";
+            document.getElementById("con1").appendChild( pPre[0] );
+        }
+        
+        function overNext() {
+            var list = document.getElementById("con3") ;
+            document.getElementById("con3").innerHTML="";
+            document.getElementById("con3").appendChild( pNex[1] );
+        }
+        function outNext(){
+            var list = document.getElementById("con3") ;
+            document.getElementById("con3").innerHTML="";
+            document.getElementById("con3").appendChild( pNex[0] );
+        }
+        
+        function overPly() {
+            var list = document.getElementById("con2") ;
+            document.getElementById("con2").innerHTML="";
+            document.getElementById("con2").appendChild( pmid[1] );
+        }
+        function outPly(){
+            var list = document.getElementById("con2") ;
+            document.getElementById("con2").innerHTML="";
+            document.getElementById("con2").appendChild( pmid[0] );
+        }
+        
+        function overPau() {
+            var list = document.getElementById("con2") ;
+            document.getElementById("con2").innerHTML="";
+            document.getElementById("con2").appendChild( pmid[1] );
+        }
+        function outPau(){
+            var list = document.getElementById("con2") ;
+            document.getElementById("con2").innerHTML="";
+            document.getElementById("con2").appendChild( pmid[0] );
+        }
+
+        //設定每兩秒執行一次sequentialImg() ，此行要在 function 之外
+        var stop=setInterval(sequentialImg, ms);
+
+        function sequentialImg(){  //循序播放
+
+            document.getElementById("pick"+i).className="pickout";
+			
+			var list = document.getElementById("my_div") ;
+
+            document.getElementById("my_div").innerHTML="";
+            document.getElementById("my_div").appendChild( posters[i] );
+
+            i++;
+            if(i>=preload_len)  i=0;
+			
+			document.getElementById("pick"+i).className="pickon";
+        }
+      
+        function setImg(me){  
+		//alert("before pick"+i+'  me.id.slice(-1)='+me.id.slice(-1));
+            
+			// alert('setImg');
+			document.getElementById("pick"+i).className="pickout";
+			
+			
+			var list = document.getElementById("my_div") ;
+            document.getElementById("my_div").innerHTML="";
+            document.getElementById("my_div").appendChild( posters[ parseInt(me.id.slice(-1)) ] );
+             
+            i=me.id.slice(-1);
+			//alert("after pick"+i);
+			
+
+			
+            if(i>=preload_len)  i=0;
+      
+	  			document.getElementById("pick"+i).className = "pickon";
+	  
+            if(stop!=null){
+                stopImg(); 
+            }
+			
+            stop=setInterval("sequentialImg",ms);
+
+        }
+
+		function stopImg(){
+			if(stop!=null)
+			{   
+			clearInterval(stop);	}
+			else 
+			{ stop=null;}
+
+			document.getElementById("con2").removeEventListener("click",stopImg );
+			document.getElementById("con2").addEventListener("click",playImg );
+
+			document.getElementById("con2").removeEventListener("mouseover",overPau );
+			document.getElementById("con2").onmouseover = overPly;
+			document.getElementById("con2").removeEventListener("mouseout",outPau );
+			document.getElementById("con2").onmouseout = outPly;
+
+			pmid=pPly;
+
+			document.getElementById("con2").innerHTML="";
+			document.getElementById("con2").appendChild( pmid[0] );
+
+		}
+		  
+		function playImg(){
+			stop=setInterval(sequentialImg,ms);
+
+			document.getElementById("con2").removeEventListener("click",playImg );
+			document.getElementById("con2").addEventListener("click",stopImg );
+
+			document.getElementById("con2").onmouseover = overPau;
+			document.getElementById("con2").onmouseout = outPau;
+
+			pmid=pPau;
+			document.getElementById("con2").innerHTML="";
+			document.getElementById("con2").appendChild( pmid[0] );
+		}
+		  
+	    function setImgright(me){  
+            document.getElementById("pick"+i).className="pickout";
+			  i=(++i)%7;
+			  var list = document.getElementById("my_div") ;
+			  if(list.childNodes[0]!=null){
+				  list.removeChild( list.childNodes[0] );
+			  }
+			 document.getElementById("pick"+i).className="pickon";
+
+			  document.getElementById("my_div").appendChild( posters[i] );
+	    }
+
+		function setImgleft(me){  
+            document.getElementById("pick"+i).className="pickout";
+			if(i==0)
+			{ 	i=6;	}
+			else
+			{	--i;} 
+            document.getElementById("pick"+i).className="pickon";
+
+			document.getElementById("my_div").innerHTML="";
+            document.getElementById("my_div").appendChild( posters[i] );
+        }
+    </script>
+  </head>
+  <body>
+    <div id="bgimage"><img></div>
+    <div id="container">
+      <ul class="menu">
+        <li><a href="../index.html">首頁</a></li>
+        <li><a href="../Lab01/Lab01.html">單元一</a></li>
+        <li><a href="../Lab02/Lab02.html">單元二</a></li>
+        <li><a href="../Lab03/Lab03.html">單元三</a></li>
+        <li><a href="Lab04.html">單元四</a></li>
+        <li><a href="../Lab05/Lab05.html">單元五</a></li>
+      </ul>
+      <article>
+      <div style="color:white;background-color: #739328">Lab04</div>
+        <!-- 每頁不同的內容從這裡開始-->
+        <!-- 每頁不同的內容到這裡結束-->
+        <div id="my_div"></div>
+        <div id="picks"></div>
+		<div id="control"><div>
+      </article>
+      <footer>
+        <p>e-amil:aaa@gmail.com   Tel:(02)2222-2222   台北市復興南路一段390號   © 2017 All Rights Reserved Quality Art Technology CO.</p>
+      </footer>
+    </div>
+  </body>
+</html>

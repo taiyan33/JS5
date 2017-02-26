@@ -1,0 +1,128 @@
+doctype html
+html
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+        title
+        meta(charset='utf-8')
+        link(href='../Styles/main.css', rel='stylesheet')
+        style.
+            .ImgStar {
+                width: 26px;
+                height: 25px;
+                background: url('../pic/s.png') 0px 0px;
+                display: inline-block
+            }
+            .ImgNo {
+                width: 26px;
+                height: 25px;
+                background: url('../pic/s.png') 0px 25px;
+                display: inline-block
+            }
+            /*
+            .ImgStar {
+                width: 26px;
+                height: 20px;
+                background: url('../pic/star.png') 0px 0px;
+            }
+            .ImgNo {
+                width: 26px;
+                height: 20px;
+                background: url('../pic/star.png') 0px 20px;
+            }
+            #status{
+                color:black;
+            }
+            */
+        script.
+            var rate = 0;
+            var hov = 0;
+            window.onload = function () {
+                for (var i=1; i<=5;i++){
+                    document.getElementById('rating').innerHTML += "<div id='s" + i + "'" + "class='ImgNo' onclick='clickon(this)' onmouseover='over(this)' onmouseout='mouseout(this)' ></div>";
+                }
+            }
+            function over(me) {
+                var rec=0;
+                console.log('a');
+                var objValue = document.getElementById('rating');
+                for (var i = 1; i <= 5; i++) {
+                    if (me == objValue.childNodes[i - 1]) {
+                        hov = i;
+                        rec = i;
+                        for (var j = 1; j <= i; j++) {
+                            objValue.childNodes[j - 1].className = 'ImgStar';
+                        }
+                    }
+                }
+                //hover時 超過hov的範圍 黑色
+                for (var i = 5 ; i >= hov + 1 ; i--) {
+                    //alert('rate= ' + rate+' i='+i);
+                    document.getElementById('s' + i).setAttribute("class", "ImgNo");
+                }
+                document.getElementById('status').innerText = '打分中...' + rec;
+            }
+            function clickon(me) {
+                var rec = 0;
+                var objValue = document.getElementById('rating');
+                for (var i = 1; i <= 5; i++) {
+                    if (me == objValue.childNodes[i - 1]) {
+                        for (var j = 1; j <= i; j++) {
+                            objValue.childNodes[j - 1].className = 'ImgStar';
+                            rate = j;
+                            rec = j;
+                        }
+                    }
+                }
+                //click時 超過rate的範圍 黑色
+                for (var i = 5 ; i >= rate + 1 ; i--) {
+                    //alert('rate= ' + rate+' i='+i);
+                    document.getElementById('s' + i).setAttribute("class", "ImgNo");
+                }
+                //alert(rate);
+                document.getElementById('status').innerText = '給你分數...' + rec;
+            }
+            
+            function mouseout(me) {
+            var children = document.getElementById('rating').childNodes;
+            //alert(me);
+            //out時 , 超過rate的範圍 黑色
+                for (var i = 5 ; i >= 1 ; i--) {
+                    //alert('rate= ' + rate+' i='+i);
+                    //out時 , 超過rate的範圍 黑色
+                    if (i >= rate + 1) {
+                        document.getElementById('s' + i).setAttribute("class", "ImgNo");
+                    }
+                    else { //out時 , 在rate的範圍內 亮色
+                        document.getElementById('s' + i).setAttribute("class", "ImgStar");
+                    }
+                }
+                document.getElementById('status').innerText = '給你分數...' + rate;
+            }
+    body
+        #bgimage
+            img
+        #container
+            ul.menu
+                li
+                    a(href='../index.html') 首頁
+                li
+                    a(href='../Lab01/Lab01.html') 單元一
+                li
+                    a(href='../Lab02/Lab02.html') 單元二
+                li
+                    a(href='Lab03.html') 單元三
+                li
+                    a(href='../Lab04/Lab04.html') 單元四
+                li
+                    a(href='../Lab05/Lab05.html') 單元五
+            article
+                | Lab03
+                .star
+                    #rating
+                    #status
+                        //
+                            <img id="ImgStar" >
+                            <img id="ImgNo" >
+            footer
+                p
+                    | e-amil:aaa@gmail.com   Tel:(02)2222-2222   台北市復興南路一段390號   © 2017 All Rights Reserved Quality Art Technology CO.

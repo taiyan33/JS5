@@ -1,0 +1,185 @@
+body
+  font-family: 標楷體,Arial, Helvetica, sans-serif
+  padding: 0px
+  margin: 0px
+  // background-color: rgb(172,192,191) 
+  
+#bgimage img
+  background-image: url('../pic/bg.jpg')
+  filter: grayscale(100%) sepia(100%)
+  position: fixed
+  background-attachment: fixed
+  background-position: center
+  background-size: cover
+  width: 100%
+  height: 100%
+  z-index: -1
+
+
+#container
+  width: 1024px
+  margin: auto
+
+.menu
+  overflow: hidden
+  width: 100%
+  background-color: #f1f2f5
+  border: 1px solid #bfc3c2
+  border-radius: 5px
+  padding: 0px
+  margin: 0px
+  
+  li
+    // list-style-type: none
+    // float: left
+    position: relative
+    
+    display: inline-block
+    // transform: translate( 170%, 0%)
+    width: 16.69%
+    padding: 0.52px
+    margin-left: -8px
+    // width: 5em
+    // border: 1px solid #cccccc
+
+    a
+      padding: 0px
+      margin: 0px
+      display: block
+      width: 100%
+      line-height: 2.5em
+      // color: #333333
+      text-decoration: none
+      text-align: center
+      background-color: #739328//rgb(102,179,255)
+      // border: 1px solid blue
+      transition: transform 1s
+    // a + a 
+    //   border-left: 1px solid #aaa;
+
+    a:hover
+      // border: 1px solid red
+      padding: 0px
+      margin: 0px
+      color: #ffffff
+      background-color: #CC3232
+      transition: transform 1s
+
+footer
+  font-size: 1em
+  width: 1024px
+  border-radius: 0 0 15px 15px
+  border: 1px solid olive;
+  text-align: center
+  /* 設定footer絕對位置在底部 */
+  position: relative
+  bottom: 0
+  margin: auto
+  color: white
+  background-color: #739328//rgb(102,179,255)
+  font-size: 75%
+
+article
+  width: 100%
+  height: 800px
+  border: solid 0.1px rgba(210, 210, 255, 0.4)
+  background-color: rgba(210, 210, 255, 0.4)
+  
+//lab1
+//原生控制項不用加寬度
+table
+  border: red solid 2px
+  border-collapse: collapse
+  margin:  50px auto 50px
+
+tr, td
+  margin: 0px
+  padding: 5px
+  border: red solid 2px
+  background: rgb(204, 255, 255)
+  color: red
+////////////////////////////////////////
+//lab2
+//要加寬度才能計算 auto
+.f2
+  margin: 50px auto  50px
+  width: 500px
+.l1
+  color: #cc3232
+legend 
+  background-color: #cc3232
+  color: white
+.str2
+  color: #cc3232
+.str1 input:focus
+  font-size: 13.4px
+  box-shadow: inset 0 -3px 0 #cc3232 //, 0 0 15px 5px #ebebeb
+  background-color: pink
+.str1 input:hover
+  font-size: 13.4px
+  box-shadow:  0 0 15px 3px #ebebeb , inset 0 -3px 0 #cc3232
+// input:not(:focus)
+//   font-size: 13px
+//   box-shadow: 0 0
+.submit input
+  background-color: transparent
+  color: red
+  border-color:  transparent
+.submit input:hover
+  box-shadow:  0 0 15px 3px #ebebeb , inset 0 -3px 0 #cc3232
+
+
+#SpanDate, #SpanPwd, #SpanName
+  vertical-align: sub
+  display: inline-block
+  img
+    display: block
+
+//lab3
+.star
+    margin: 50px auto 50px
+    width: 200px
+    color: red
+
+//lab4
+#my_div
+    margin: 50px auto 50px
+    padding: 0px
+    width: 900px
+    border: 3px solid green
+    // box-shadow: 0px 0px 0px rgba(0,0,0,0.6)
+    bottom: 0px
+    // .imgcls
+    //   bottom: 0px
+    //   padding: 0px
+    //   margin: 0px
+
+#picks
+    position: absolute
+    left: 50%
+    transform: translate(-50%,0%)
+    .pick
+      background-color: olive
+      border-radius: 35px
+      display: inline-block
+      width: 35px
+      height: 35px
+      text-align: center
+      line-height: 35px
+      font-weight: 900
+      margin-left: 20px
+    .pick:hover
+      box-shadow: inset 0px 0px  4px 3px rgba(255, 255, 255,0.8)
+      background-color: hotpink
+      color: white
+      width: 35px
+      height: 35px
+      line-height: 35px
+      border-radius: 35px
+      display: inline-block
+      cursor: pointer
+
+//lab5
+.calendar
+    margin: 50px auto 50px
+    width: 400px

@@ -1,0 +1,195 @@
+doctype html
+html
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+        title
+        meta(charset='utf-8')
+        link(href='../Styles/main.css', rel='stylesheet')
+        script.
+          var preload = new Array(
+          "../pic/lab4/p1.jpg",
+          "../pic/lab4/p2.jpg",
+          "../pic/lab4/p3.jpg",
+          "../pic/lab4/p4.jpg",
+          "../pic/lab4/p5.jpg",
+          "../pic/lab4/p6.jpg",
+          "../pic/lab4/p7.jpg");
+		  var preload_len = preload.length;
+		  
+		  var linker = new Array();
+		  linker[0] = "#";  //連結到自己
+		  linker[1] = "http://www.iiiedu.org.tw/taipei/";
+		  linker[2] = "http://tw.yaoo.com";
+		  linker[3] = "http://www.google.com";
+		  linker[4] = "http://www.google.com";
+		  linker[5] = "http://www.google.com";
+		  linker[6] = "http://www.google.com";
+		 
+		 var ms=1000;
+
+		 //var linker = ["#", "http://www.iiiedu.org.tw/taipei/", "http://tw.yahoo.com", "http://www.google.com"];
+		 
+		 function redirect(me) {
+			 // alert( p );
+			  location.href = linker[ p ];
+		  }
+
+		  
+		  var posters = new Array();
+		  
+		  for(var p=0; p<preload.length; p++) {
+			  posters[p] = new Image();
+			  posters[p].src=preload[p] ;
+			  posters[p].style="width: 100%;padding: 0px;margin-top: 0px;bottom: 0px;";
+			  console.log(posters[p].src);
+			  console.log(posters[p]);
+			  preload[p].innerHTML="<a onclick='redirect("+ p +")'></a>";
+		  }
+		  
+		  //- console.log( document.getElementById("my_div") );
+		  
+		  var i=0; 
+		  
+		  window.onload = function () {
+		  
+			  document.getElementById("my_div").appendChild(posters[i++]);
+		  
+			  for (var j=1; j<=7;j++){
+				  document.getElementById('picks').innerHTML +="<div id='pick" +   j + "'" + " class='pick' onmouseenter='setImg(this)' >"+j+"</div>";
+		  
+			  }
+			  
+			  
+			 
+				  document.getElementById('control').innerHTML +="<div id='con" +   1 + "'" + " class='con'  >"+ "<<<<<" +"</div>";
+				  document.getElementById('control').innerHTML +="<div id='con" +   2 + "'" + " class='con'  >"+ "|||||" +"</div>";
+				  document.getElementById('control').innerHTML +="<div id='con" +   3 + "'" + " class='con'  >"+ ">>>>>" +"</div>";
+
+				document.getElementById("con1").addEventListener("click",setImgleft );
+				document.getElementById("con2").addEventListener("click",stopImg );
+				document.getElementById("con3").addEventListener("click",setImgright );
+					  
+		  }
+		  
+		  
+			  //設定每兩秒執行一次sequentialImg() ，此行要在 function 之外
+			  var stop=setInterval(sequentialImg, ms);
+
+			  function sequentialImg(){  //循序播放
+
+				  var list = document.getElementById("my_div") ;
+		  
+				  if(list.childNodes[0]!=null){
+					  list.removeChild( list.childNodes[0] );
+				  }
+		  
+				  document.getElementById("my_div").appendChild( posters[i] );
+
+				  i++;
+				  if(i>=preload_len)  i=0;
+			  }
+		  
+			  function setImg(me){  
+			  
+			 
+				
+				  if(me.id.slice(-1)-1==i) return;
+				  
+				  
+				  
+				  var list = document.getElementById("my_div") ;
+				  if(list.childNodes[0]!=null){
+					  list.removeChild( list.childNodes[0] );
+				  }
+		  
+				  //- alert(me.id.slice(-1) );
+				  document.getElementById("my_div").appendChild( posters[ parseInt(me.id.slice(-1))-1 ] );
+					
+					//document.getElementById("my_div").onclick=redirect( parseInt(me.id.slice(-1))-1);  會直接跳轉
+					
+				  i=me.id.slice(-1)-1;
+
+				  if(i>=preload_len)  i=0;
+		  
+				  if(stop!=null)
+					  clearInterval(stop);
+				  //- else 
+				  //-     stop=null;
+				 stop=setInterval("sequentialImg",ms);
+				  list.childNodes[0].addEventListener("click", function(){	redirect(i);		});
+				 
+			  }
+			  
+			  function stopImg(){
+					if(stop!=null)
+					{   
+					clearInterval(stop);	}
+					else 
+					{ stop=null;	}
+					
+					document.getElementById("con2").removeEventListener("click",stopImg );
+					document.getElementById("con2").addEventListener("click",playImg );
+			  }
+			  
+			  function playImg(){
+					stop=setInterval(sequentialImg,ms);
+					
+					document.getElementById("con2").removeEventListener("click",playImg );
+					document.getElementById("con2").addEventListener("click",stopImg );
+			  }
+			  
+			  function setImgright(me){  
+
+			  
+				  i=(++i)%7;
+				  var list = document.getElementById("my_div") ;
+				  if(list.childNodes[0]!=null){
+					  list.removeChild( list.childNodes[0] );
+				  }
+		  
+				  //- alert(me.id.slice(-1) );
+				  document.getElementById("my_div").appendChild( posters[i] );
+			  }
+			
+			function setImgleft(me){  
+
+				if(i==0)
+				{ 	i=6;	}
+				else
+				{	i=(--i)%7;} 
+				  
+				  var list = document.getElementById("my_div") ;
+				  if(list.childNodes[0]!=null){
+					  list.removeChild( list.childNodes[0] );
+				  }
+		  
+				  //- alert(me.id.slice(-1) );
+				  document.getElementById("my_div").appendChild( posters[i] );
+			  }
+    body
+        #bgimage
+            img
+        #container
+            ul.menu
+                li
+                    a(href='../index.html') 首頁
+                li
+                    a(href='../Lab01/Lab01.html') 單元一
+                li
+                    a(href='../Lab02/Lab02.html') 單元二
+                li
+                    a(href='../Lab03/Lab03.html') 單元三
+                li
+                    a(href='Lab04.html') 單元四
+                li
+                    a(href='../Lab05/Lab05.html') 單元五
+
+            article
+                // 每頁不同的內容從這裡開始
+                | Lab04
+                // 每頁不同的內容到這裡結束
+                #my_div
+                #picks
+            footer
+                p
+                    | e-amil:aaa@gmail.com   Tel:(02)2222-2222   台北市復興南路一段390號   © 2017 All Rights Reserved Quality Art Technology CO.

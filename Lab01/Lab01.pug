@@ -1,0 +1,65 @@
+doctype html
+html
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+        title
+        meta(charset='utf-8')
+        meta(content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;', name='viewport')
+
+        link(href='../Styles/main.css', rel='stylesheet')
+        style.
+
+    script.
+        window.onload = function () {
+            var tableString='';
+
+            tableString+="<table><tr>";
+            for (var i = 2; i <= 9; i++) {
+            tableString+="<td>";
+                for (var j = 1; j <= 9; j++) {
+                    tableString+= i + '*' + j + '=' + (i * j) + '<br>';
+                }
+                tableString+="</td>";
+            }
+            tableString+="</tr></table>";
+
+            document.getElementById('table').innerHTML=tableString;
+        }
+        
+
+
+        //- document.write("<table><tr>");
+        //- for (var i = 2; i <= 9; i++) {
+        //- //document.write("<div class='table1'>");
+        //- document.write("<td>");
+        //- for (var j = 1; j <= 9; j++) {
+        //- document.write('' + i + '*' + j + '=' + (i * j) + '<br>');
+        //- }
+        //- document.write("</td>");
+        //- //document.write("</div'>");
+        //- }
+        //- document.write("</tr></table>");
+
+    body
+        #bgimage
+            img
+        #container
+            ul.menu
+               li
+                   a(href='../index.html') 首頁
+               li
+                   a(href='Lab01.html') 單元一
+               li
+                   a(href='../Lab02/Lab02.html') 單元二
+               li
+                   a(href='../Lab03/Lab03.html') 單元三
+               li
+                   a(href='../Lab04/Lab04.html') 單元四
+               li
+                   a(href='../Lab05/Lab05.html') 單元五
+            article
+                |Lab01
+                #table
+            footer
+                p
+                    | e-amil:aaa@gmail.com   Tel:(02)2222-2222   台北市復興南路一段390號   © 2017 All Rights Reserved Quality Art Technology CO.

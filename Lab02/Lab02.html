@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title></title>
+    <meta charset="utf-8">
+    <link href="../Styles/main.css" rel="stylesheet">
+    <style>
+      /*CSS write here*/
+      .l1{
+      padding-right:3px;
+      font-weight:bold;
+      }
+      .str1{
+      width:700px;
+      margin:20px;
+      /*text-align:center;*/
+      border-bottom: 1px solid gray;
+      padding-bottom: 5px;
+      }
+      .submit{
+      width:700px;
+      margin:20px;
+      text-align:center;
+      }
+      .str2{
+          color: #cc3232;
+          font-family: 微軟正黑體;
+          font-weight: 900;
+          font-size: 12px;
+      }
+      fieldset{
+          width:750px;
+          /*float:left;*/
+          /*color: lightblue;*/
+          border-radius: 10px;
+          border: 3px solid lightblue;
+          border-color: #cc3232;
+          margin-bottom:10px;
+      }
+    </style>
+    <script>
+      var preload = new Array(
+          "../pic/true.png",
+          "../pic/false.png");
+          var preload_len = preload.length;  // 圖檔數量
+      
+          // 要做3份, 不能共用, 只有一份圖會跑來跑去的
+       var postersName = new Array();
+      for(var i=0; i<preload.length; i++) {
+          postersName[i] = new Image();
+          postersName[i].setAttribute("src",preload[i]) ;
+          postersName[i].setAttribute("style","padding: 0px;margin-top: 0px;bottom: 0px;");
+      }
+      var postersPwd = new Array();
+      for(var i=0; i<preload.length; i++) {
+          postersPwd[i] = new Image();
+          postersPwd[i].setAttribute("src",preload[i]) ;
+          postersPwd[i].setAttribute("style","padding: 0px;margin-top: 0px;bottom: 0px;");
+      }
+      var postersDate = new Array();
+      for(var i=0; i<preload.length; i++) {
+          postersDate[i] = new Image();
+          postersDate[i].setAttribute("src",preload[i]) ;
+          postersDate[i].setAttribute("style","padding: 0px;margin-top: 0px;bottom: 0px;");
+      }
+      function OnfocusoutName() {
+
+          var theName = document.getElementById("idName").value;
+          var reUP = /^[\u4E00-\u9FA5]{2,}$/;
+          var re = /[\u4E00-\u9FA5]/;
+          var reSP = /^\S$/;
+            var re2 = /.{2,}/;
+          var list = document.getElementById("SpanName");
+          if(list.childNodes[0]!=null)list.removeChild(list.childNodes[0]); 
+      
+          if (reUP.test(theName) == true ){
+            document.getElementById("SpanName").innerHTML="";
+              document.getElementById("SpanName").appendChild( postersName[0] );
+			  
+          }else{
+                document.getElementById("SpanName").innerHTML="";
+              document.getElementById("SpanName").appendChild(postersName[1]);
+
+                var msg="";
+                if(re.test(theName)==false){
+                    msg+='限定中文 ';
+                }
+                if(re2.test(theName) ==false){
+                    msg+='至少2字元 ';
+                }
+                  if(reSP.test(theName) ==false){
+                    msg+='不可用空白字元 ';
+                }
+                
+                var newDiv = document.createElement("span"); 
+                var newContent = document.createTextNode(msg);     //純文字
+                    newDiv.appendChild(newContent); 
+                    newDiv.setAttribute("id", "nameMsg")
+                 newDiv.style.verticalAlign ='top';
+                 newDiv.style.color ='red';
+               document.getElementById("SpanName").appendChild(newDiv);
+
+
+               
+          }
+
+                console.log(document.getElementById("SpanName")[0]);
+      
+      }
+      function OnfocusoutPwd() {
+              
+          var thePwd = document.getElementById("idPwd").value;
+          //var reg = /^(?=.*[a-z])(?=.*\d)(?=.*[\*\@\-\_\+\$\%\#\&\^\!])\S{6,}$/;
+          //相等 //因為本來就不包含空白
+          var reg = /^(?=.*[a-z])(?=.*\d)(?=.*[\*\@\-\_\+\$\%\#\&\^\!]).{6,}$/;
+          
+          // /^(?=.*[a-z]).{2,}$/
+          //以2個字為例
+          //字數,數數, 數字 3種組合 合法
+          //所以至少 包含一個數
+      
+      
+          var reAZ = /[a-zA-Z]{1,}/;
+          //- console.log(reAZ.test(thePwd));
+      
+          var reNum = /\d{1,}/;
+          //- console.log(reNum.test(thePwd));
+      
+          var re = /[\!@#\$%\^&\*]{1,}/;
+          //- console.log(re.test(thePwd));
+      
+          var re6 = /.{6,}/;
+          var reSP = /^\S$/;
+          //- console.log(re6.test(thePwd))
+          var list = document.getElementById("SpanPwd");
+          if(list.childNodes[0]!=null)list.removeChild(list.childNodes[0]); 
+      
+          if (re.test(thePwd)&&
+              reAZ.test(thePwd)&&
+              reNum.test(thePwd)&&
+              re6.test(thePwd)
+              ){
+          //- if(reg.test(thePwd))
+              document.getElementById("SpanPwd").innerHTML="";
+              document.getElementById("SpanPwd").appendChild( postersPwd[0] );
+			 
+          }else{
+                document.getElementById("SpanPwd").innerHTML="";
+                document.getElementById("SpanPwd").appendChild(postersPwd[1] );
+
+                // document.getElementById("SpanPwd").innerHTML+='<span>請輸入正確密碼</span>';
+                var msg="";
+                if(re.test(thePwd)==false){
+                    msg+='至少一特殊字 ';
+                }
+                  if(reAZ.test(thePwd) ==false){
+                    msg+='至少一英文字 ';
+                }
+                 if(reNum.test(thePwd) ==false){
+                    msg+='至少一數字 ';
+                }
+
+                if(re6.test(thePwd) ==false){
+                    msg+='至6字元 ';
+                }
+
+                if(reSP.test(thePwd) ==false){
+                    msg+='不可用空白字元 ';
+                }
+
+               //等價
+                var newDiv = document.createElement("span"); 
+                var newContent = document.createTextNode(msg);     //純文字
+                    newDiv.appendChild(newContent); 
+                
+                 newDiv.style.verticalAlign='top';
+                 newDiv.style.color ='red';
+               document.getElementById("SpanPwd").appendChild(newDiv);
+
+          }
+      
+      }
+      function OnfocusoutDate() {
+          var theDate = document.getElementById("idDate").value;
+
+          var re = /^\d{4}\/(0[1-9]|1[0-2])\/(0[1-9]|[1-2][0-9]|3[0-1])$/;
+      
+          // var list = document.getElementById("SpanDate");
+
+          var d = new Date('2012/02/31');
+
+          var input=theDate.split("/");
+
+          if(input.length==3){
+             var year=input[0],month=input[1],day=input[2];
+            //2012/02/31 error
+            if (d.getFullYear() == year && d.getMonth() == month && d.getDate() == day) {
+            }else{
+                 document.getElementById("SpanDate").innerHTML="";
+                document.getElementById("SpanDate").appendChild(postersDate[1]);
+
+                var newDiv = document.createElement("span"); 
+
+                var newContent = document.createTextNode("請輸入正確日期");     //純文字
+
+                    newDiv.appendChild(newContent); 
+
+                    newDiv.style.verticalAlign ='top';
+                    newDiv.style.color ='red';
+
+               document.getElementById("SpanDate").appendChild(newDiv);
+               return;
+            }
+          }
+       
+
+
+
+          // if(list.childNodes[0]!=null)list.removeChild(list.childNodes[0]); 
+      
+          if (re.test(theDate) == true) {
+                document.getElementById("SpanDate").innerHTML="";
+                document.getElementById("SpanDate").appendChild(postersDate[1]);
+      
+          } else {
+                document.getElementById("SpanDate").innerHTML="";
+                document.getElementById("SpanDate").appendChild(postersDate[1]);
+
+                var newDiv = document.createElement("span"); 
+                var newContent = document.createTextNode("請輸入正確日期");     //純文字
+                    newDiv.appendChild(newContent); 
+                    newDiv.style.verticalAlign ='top';
+                    newDiv.style.color ='red';
+
+               document.getElementById("SpanDate").appendChild(newDiv);
+      
+          }
+      }
+      
+    </script>
+  </head>
+  <body>
+    <div id="bgimage"><img></div>
+    <div id="container">
+      <ul class="menu">
+        <li><a href="../index.html">首頁</a></li>
+        <li><a href="../Lab01/Lab01.html">單元一</a></li>
+        <li><a href="Lab02.html">單元二</a></li>
+        <li><a href="../Lab03/Lab03.html">單元三</a></li>
+        <li><a href="../Lab04/Lab04.html">單元四</a></li>
+        <li><a href="../Lab05/Lab05.html">單元五</a></li>
+      </ul>
+      <article>
+      
+    <div style="color:white;background-color: #739328">Lab02</div>
+
+        <div id="lab2">
+          <form class="f2" action="#" method="get" enctype="multipart/form-data">
+            <fieldset>
+              <legend>Form Check</legend>
+              <div class="str1">
+                <label class="l1" for="idName">姓名:</label>
+                <input id="idName" type="text" name="account" size="15" value="" placeholder="請輸入姓名" autocomplete="" pattern="^[\u4e00-\u9fa5]{2,}" onfocusout="OnfocusoutName()">
+                <div id="SpanName"></div>
+                <div class="str2">(1.不可空白 2.至少兩個字以上 3.必須全為中文字)</div>
+              </div>
+              <div class="str1">
+                <label class="l1" for="idPwd">密碼:</label>
+                <input id="idPwd" type="password" name="password" size="15" placeholder="請輸入密碼" pattern="[a-zA-Z]{1}[1-2]d{6,}" onfocusout="OnfocusoutPwd()">
+                <div id="SpanPwd"></div>
+                <div class="str2">(1.不可空白 2.至少6個字且必須包含英文、字母、數字、特殊字元[!@#$%^&*] )</div>
+              </div>
+              <div class="str1">
+                <label class="l1" for="idDate">日期:</label>
+                <input id="idDate" type="text" name="" placeholder="ex:2000/02/29" size="15" onfocusout="OnfocusoutDate()">
+                <div id="SpanDate"></div>
+                <div class="str2">格式:西元年/日月/ yyyy/MM/dd</div>
+              </div>
+              <div class="submit">
+                <input type="submit" value="送出">
+                <input type="reset" value="清除">
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </article>
+      <footer>
+        <p>e-amil:aaa@gmail.com   Tel:(02)2222-2222   台北市復興南路一段390號   © 2017 All Rights Reserved Quality Art Technology CO.</p>
+      </footer>
+    </div>
+  </body>
+</html>
