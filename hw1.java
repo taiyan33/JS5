@@ -1,4 +1,7 @@
 import java.util.Random;
+import java.text.DecimalFormat;
+
+
 public class hw1 {
 	
 	public static void Q1(){
@@ -52,22 +55,26 @@ public class hw1 {
 			_1=_1%10;
 			_10=_10%10;
 			_100=_100%10;
-			// if(_1+1>9)_1=0; else _1++;
-			// if(_10+1>9)_10=0; else _1++;
-			// if(_100+1>9)_100=0; else _1++;
+
 			
 		}
-		// if(num15[0]==num15[9] ){
-			// num15[9]
-		// }
+
 		System.out.print("\n陣列: ");
 		
 		for(int i=0;i<15;i++)
 		{
+			if(i==14)System.out.print( num15[i] );
+			else
 		 System.out.print( num15[i] + ", ");
 		}
-		System.out.println( "\n總合:" +sum);
-		System.out.println( "平均數: " + (sum/num15.length) );
+		
+		DecimalFormat df = new DecimalFormat("#.000"); //自動補0
+		String s=df.format(sum);   
+		System.out.println( "\n總合:" +s );
+		
+		 
+		 s=df.format(sum/15.0);   
+		System.out.println( "平均數: " + s );
 	}
 	
     public static void main(String[] args) {
