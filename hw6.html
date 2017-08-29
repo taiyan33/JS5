@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	h1 {
+	    color: blue;
+	    font-family: verdana;
+	    font-size: 300%;
+	}
+	p  {
+		background-color: gray;
+	    color: red;
+	    display: inline-block;
+	    /*font-family: courier;*/
+	    /*font-size: 160%;*/
+	    margin : 1px 1px 1px 1px;
+	}
+	div {
+		display : inline;
+		margin:10px;
+	}
+	</style>
+	<script>
+	    window.onload = function () {
+	    	// https://stackoverflow.com/questions/17001961/javascript-add-select-programmatically
+	    		var myDiv1 = document.getElementById("myDiv1");
+				//Create array of options to be added
+				var array = ["Volvo","Saab","Mercades","Audi"];
+
+				//Create and append select list
+				var selectList = document.createElement("select");
+				selectList.id = "mySelect1";
+				selectList.onchange = play;
+				myDiv1.appendChild(selectList);
+				// body.appendChild(myDiv);
+				//Create and append the options
+				for (var i = 1; i <= 6; i++) {
+				    var option = document.createElement("option");
+				    option.value = i;
+				    option.text = i+'面';
+				    selectList.appendChild(option);
+				}
+
+
+
+				var myDiv2 = document.getElementById("myDiv2");
+				//Create array of options to be added
+				var array = ["Volvo","Saab","Mercades","Audi"];
+
+				//Create and append select list
+				var selectList = document.createElement("select");
+				selectList.id = "mySelect2";
+				selectList.onchange = play;
+				myDiv2.appendChild(selectList);
+				// body.appendChild(myDiv);
+				//Create and append the options
+				for (var i = 1; i <= 3; i++) {
+				    var option = document.createElement("option");
+				    option.value = i;
+				    option.text = i;
+				    selectList.appendChild(option);
+				}
+
+				var myDiv3 = document.getElementById("myDiv3");
+				//Create array of options to be added
+				var array = ["Volvo","Saab","Mercades","Audi"];
+
+				//Create and append select list
+				var selectList = document.createElement("select");
+				selectList.id = "mySelect3";
+				selectList.onchange = play;
+				myDiv3.appendChild(selectList);
+				// body.appendChild(myDiv);
+				//Create and append the options
+				for (var i = 1; i <= 100; i++) {
+				    var option = document.createElement("option");
+				    option.value = i;
+				    option.text = i;
+				    selectList.appendChild(option);
+				}
+
+
+				
+				// console.log(document.getElementById("mySelect3").value);
+				// 	    		// document.writeln(document.getElementById("myDiv3").value);
+				//  var tableString='';
+		    
+		  //       tableString+="<table><tr>";
+		  //       for (var i = 1; i <= document.getElementById("mySelect1").value*document.getElementById("mySelect2").value; i++) {
+		  //       tableString+="<td>";
+		  //           for (var j = 1; j <= 3; j++) {
+		  //               tableString+= i + '*' + j + '=' + (i * j) + '<br>';
+		  //           }
+		  //           tableString+="</td>";
+		  //       }
+		  //       tableString+="</tr></table>";
+		    
+		  //       document.getElementById('table').innerHTML=tableString;
+				console.log(123);
+				// document.appendChild( document.getElementById("mySelect3").value );
+	    }
+	function play(){
+console.log(453);
+		var dice =[];
+		
+			// var max=6,min=1;
+			for(var i=1;i<= document.getElementById("mySelect1").value*document.getElementById("mySelect2").value;i++){
+				dice[i]=0;
+			}
+			for(var i=1;i<= document.getElementById("mySelect3").value;i++)
+			{
+				var tmp = Math.floor(Math.random()*document.getElementById("mySelect1").value+1);
+				dice[tmp]++;
+				 // console.log( tmp+"     "+dice[tmp]+ document.getElementById("mySelect1").value*document.getElementById("mySelect2").value);
+			}
+			var j=0;
+			console.log( document.getElementById("mySelect3").value);
+			for(var i=1;i<=document.getElementById("mySelect1").value*document.getElementById("mySelect2").value;i++)
+			{
+				if(dice[i]!=0)
+				{
+							 console.log( i+" :" + dice[i] + '次');
+				 			j=j+dice[i];			
+				}
+
+			}
+	}	
+
+	</script>
+</head>
+<body>
+
+
+<div id='myDiv1' > 請選擇骰子面數: </div>
+<div id='myDiv2' > 請選擇骰子數量: </div>
+<div id='myDiv3' > 請選擇骰子要丟幾次: </div>
+<br>
+<p>*</p><p>*</p><p>*</p>
+<br>
+<div>Total</div>
+<div>Times</div>
+<div id='table'></div>
+
+</body>
+</html>
