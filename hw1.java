@@ -46,7 +46,7 @@ public class hw1 {
 			sum=sum+num15[i];
 			
 			
-			System.out.println(ii+" " +_1+" "+_10+" "+_100+" ___"+ num15[i] + ", ");
+//			System.out.println(ii+" " +_1+" "+_10+" "+_100+" ___"+ num15[i] + ", ");
 			// System.out.println(ii+" " +  (_1/10.0)+" "+  (_10/100.0)+" "+  (_100/1000.0)+" ___"+ num15[i] + ", ");
 			
 			_1=_1+1;
@@ -60,17 +60,23 @@ public class hw1 {
 		}
 
 		System.out.print("\n陣列: ");
-		
+		DecimalFormat df = new DecimalFormat("#.000"); //自動補0
 		for(int i=0;i<15;i++)
 		{
-			if(i==14)System.out.print( num15[i] );
-			else
-		 System.out.print( num15[i] + ", ");
+			String s=df.format(num15[i]);  
+			if(i==14)	{
+				System.out.println( s );
+//				System.out.print( num15[i] );
+			}
+			else{
+				System.out.print( s + ", " );
+//				System.out.print( num15[i] + ", ");
+			}
 		}
 		
-		DecimalFormat df = new DecimalFormat("#.000"); //自動補0
+		
 		String s=df.format(sum);   
-		System.out.println( "\n總合:" +s );
+		System.out.println( "總合:" +s );
 		
 		 
 		 s=df.format(sum/15.0);   
@@ -83,27 +89,3 @@ public class hw1 {
 		System.out.println( );
     }
 }
-
-
-// import java.math.*;
-// import java.lang.*;
-//// BigDecimalDemo
-// public class hw2 {
-
-   // public static void main(String[] args) {
-
-      ////create 3 BigDecimal objects
-      // BigDecimal bg1, bg2, bg3;
-
-      // bg1 = new BigDecimal("15");
-      // bg2 = new BigDecimal("2");
-
-      ////divide bg1 with bg2 with 3 scale
-      // bg3 = bg1.divide(bg2, 3, RoundingMode.HALF_UP);
-
-      // String str = "Division result is " +bg3;
-
-      ////print bg3 value
-      // System.out.println( str );
-   // }
-// }
