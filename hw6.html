@@ -20,32 +20,42 @@
 		margin:10px;
 	}
 
+	table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			/*width: 100%;*/
+	}
+
+	td, th {
+	    /*border: 1px solid #dddddd;*/
+	    text-align: left;
+	    padding: 8px;
+	}
+
+	tr:nth-child(even) {
+	    background-color: #dddddd;
+	}
 	</style>
 	<script>
-
-
-
 	    window.onload = function () {
-
 				<!-- https://www.daniweb.com/programming/web-development/threads/156144/create-and-append-div-to-body-tag -->
 				<!-- https://www.w3schools.com/JSREF/met_node_insertbefore.asp -->
 				<!-- http://www.webdeveloper.com/forum/showthread.php?195162-create-and-append-div-to-body-tag -->
-
 				// https://developer.mozilla.org/zh-TW/docs/Web/API/Node/textContent
 				// show text
 				// chrome// textContent
 				// IE// innerText
 				// http://www.wibibi.com/info.php?tid=402
-				// JavaScript ªº innerHTML »P innerText ¬İ¦üÃş¦ü¡A¦ı¨ä¹ê¦³«Ü¤jªº®t²§¡A¹ï¤j¦h¼Æ³]­p®v¨Ó»¡ innerHTML À³¸Ó¤ñ¸û¼ô±x¡A¥L¬O¥Î¨Ó¨ú±o HTML ¤¸¯À©Î¼g¤J¦r¦ê¨ì HTML ºô­¶ªº»yªk¡A¥B innerHTML ¬O W3C ³W©wªº¼Ğ·Ç¼gªk¡A¦Ó innerText «h¬O°£¤F¥i¥H¥Î¨Ó¨ú±o HTML ¤¸¯À¤§¥~¡AÁÙ·|§â¤¸¯Àªº HTML ¼ĞÅÒ¥h°£±¼¡A¦ı innerText ¨Ã«D W3C ©Ò³W©wªº¼Ğ·Ç¼gªk¡A¦Ó¥B¶È¾A¥Î©ó IE ÂsÄı¾¹¡A³oÂI«D±`­«­n¡C
+				// JavaScript çš„ innerHTML èˆ‡ innerText çœ‹ä¼¼é¡ä¼¼ï¼Œä½†å…¶å¯¦æœ‰å¾ˆå¤§çš„å·®ç•°ï¼Œå°å¤§å¤šæ•¸è¨­è¨ˆå¸«ä¾†èªª innerHTML æ‡‰è©²æ¯”è¼ƒç†Ÿæ‚‰ï¼Œä»–æ˜¯ç”¨ä¾†å–å¾— HTML å…ƒç´ æˆ–å¯«å…¥å­—ä¸²åˆ° HTML ç¶²é çš„èªæ³•ï¼Œä¸” innerHTML æ˜¯ W3C è¦å®šçš„æ¨™æº–å¯«æ³•ï¼Œè€Œ innerText å‰‡æ˜¯é™¤äº†å¯ä»¥ç”¨ä¾†å–å¾— HTML å…ƒç´ ä¹‹å¤–ï¼Œé‚„æœƒæŠŠå…ƒç´ çš„ HTML æ¨™ç±¤å»é™¤æ‰ï¼Œä½† innerText ä¸¦é W3C æ‰€è¦å®šçš„æ¨™æº–å¯«æ³•ï¼Œè€Œä¸”åƒ…é©ç”¨æ–¼ IE ç€è¦½å™¨ï¼Œé€™é»éå¸¸é‡è¦ã€‚
 				 var div1 = document.createElement('div');
 				div1.id = 'myDiv1';
-				div1.innerHTML  =" ½Ğ¿ï¾Ü»ë¤l­±¼Æ: ";
+				div1.innerHTML  =" è«‹é¸æ“‡éª°å­é¢æ•¸: ";
 				var div2 = document.createElement('div');
 				div2.id = 'myDiv2';
-				div2.innerHTML  =" ½Ğ¿ï¾Ü»ë¤l¼Æ¶q: ";
+				div2.innerHTML  =" è«‹é¸æ“‡éª°å­æ•¸é‡: ";
 				var div3 = document.createElement('div');
 				div3.id = 'myDiv3';
-				div3.innerHTML  =" ½Ğ¿ï¾Ü»ë¤l­n¥á´X¦¸: ";
+				div3.innerHTML  =" è«‹é¸æ“‡éª°å­è¦ä¸Ÿå¹¾æ¬¡: ";
 				if (document.body.firstChild){
 				  document.body.insertBefore(div3, document.body.firstChild);
 				  document.body.insertBefore(div2, document.body.firstChild);
@@ -56,10 +66,6 @@
 				  document.body.appendChild(div2);
 				  document.body.appendChild(div3);
 				}
-
-
-
-
 	    	// https://stackoverflow.com/questions/17001961/javascript-add-select-programmatically
 	    		var myDiv1 = document.getElementById("myDiv1");
 				//Create array of options to be added
@@ -74,11 +80,10 @@
 				for (var i = 1; i <= 6; i++) {
 				    var option = document.createElement("option");
 				    option.value = i;
-				    option.text = i+'­±';
+				    option.text = i+'é¢';
 				    selectList.appendChild(option);
 				}
 				selectList.options[5].selected = true;
-
 				var myDiv2 = document.getElementById("myDiv2");
 				//Create array of options to be added
 				var array = ["Volvo","Saab","Mercades","Audi"];
@@ -96,7 +101,6 @@
 				    selectList.appendChild(option);
 				}
 				selectList.options[0].selected = true;
-
 				var myDiv3 = document.getElementById("myDiv3");
 				//Create array of options to be added
 				var array = ["Volvo","Saab","Mercades","Audi"];
@@ -131,6 +135,12 @@
 		    
 		  //       document.getElementById('table').innerHTML=tableString;
 				console.log(123);
+				var tableString ="<table><tr><th>Total</th><th>Times</th><th></th></tr>";
+				tableString+="</table>";
+				var mytable = document.createElement('div');
+				mytable.id = 'mytable';
+				mytable.innerHTML  = tableString;
+				document.body.appendChild(mytable);
 				play();
 				// document.appendChild( document.getElementById("mySelect3").value );
 	    }
@@ -156,34 +166,47 @@ console.log(453);
 			}
 			var j=0;
 			// console.log( document.getElementById("mySelect1").value*document.getElementById("mySelect2").value);
+			var tableString ="<table><tr><th>Total</th><th>Times</th><th></th></tr>";
 			for(var i=document.getElementById("mySelect2").value;i<=document.getElementById("mySelect1").value*document.getElementById("mySelect2").value;i++)
 			{
 				if(dice[i]!=0)
 				{
-							 console.log( i+" :" + dice[i] + '¦¸');
-				 			j=j+dice[i];	
-
+						console.log( i+" :" + dice[i] + 'æ¬¡');
+				 		j=j+dice[i];	
 				 		var div1 = document.createElement('div');
 						div1.id = 'myDiv'+i;
-
 				 			// document.body.appendChild(div)	;	
+				 				tableString+="<tr><th>"+i+"</th><th>"+dice[i]+"</th><th>";
+				 				for(var k=0; k < dice[i];k++){
+				 						tableString+="<p>*</p>";
+				 				}
+				 				tableString+="</th></tr>";
 				}
 			}
+			
+			tableString+="</table>";
+			// var mytable = document.createElement('div');
+			// 	mytable.id = 'mytable';
+			// 	mytable.innerHTML  = tableString;//" è«‹é¸æ“‡éª°å­é¢æ•¸: ";
+				// document.body.appendChild(mytable);
+
+				document.body.lastChild.innerHTML=tableString;
+			// document.body.innerHTML+="";
 	}	
 	</script>
 </head>
 <body>
 
 <!-- 
-<div id='myDiv1' > ½Ğ¿ï¾Ü»ë¤l­±¼Æ: </div>
-<div id='myDiv2' > ½Ğ¿ï¾Ü»ë¤l¼Æ¶q: </div>
-<div id='myDiv3' > ½Ğ¿ï¾Ü»ë¤l­n¥á´X¦¸: </div> -->
+<div id='myDiv1' > è«‹é¸æ“‡éª°å­é¢æ•¸: </div>
+<div id='myDiv2' > è«‹é¸æ“‡éª°å­æ•¸é‡: </div>
+<div id='myDiv3' > è«‹é¸æ“‡éª°å­è¦ä¸Ÿå¹¾æ¬¡: </div> -->
 <br>
-<p>*</p><p>*</p><p>*</p>
+<!-- <p>*</p><p>*</p><p>*</p>
 <br>
 <div class="item">Total</div>
 <div class="item">Times</div>
-<div id='table'></div>
+<div id='table'></div> -->
 
 </body>
 </html>
