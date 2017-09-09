@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <table>
+    <tr>
+        <th>Month</th>
+        <th>cost</th>
+        <th>income</th>
+    </tr>
+    <tr>
+        <td>Jan</td>
+        <td><input type="text" name="cost" value="500"></td>
+        <td><input type="text" name="income" value="4483"></td>
+    </tr>
+    <tr>
+        <td id="test">Feb</td>
+        <td><input type="text" name="cost" value="11980"></td>
+        <td><input type="text" name="income" value="5631"></td>
+    </tr>
+    <tr>
+        <td>Mar</td>
+        <td><input type="text" name="cost" value="5689"></td>
+        <td><input type="text" name="income" value="8902"></td>
+    </tr>
+    </table>
+
+
+    <!-- do your work here -->
+    <script>
+        // var i=0;
+        var inputs = document.getElementsByTagName("input");
+        [].forEach.call(inputs, function(item){
+                item.setAttribute("style", "color:green;");
+        });
+        // for( var i=0; i< inputs.length ; i++ ){
+        //     console.log( inputs[i].setAttribute("style", "color:green;")   );
+        // }
+
+        var costs = document.getElementsByName("cost");
+        for( var i=0; i< costs.length ; i++ ){
+            costs[i].getAttribute("value")>1000 ?  costs[i].parentNode.parentNode.setAttribute("bgColor","pink"):
+            costs[i].parentNode.parentNode.removeAttribute("bgColor" );
+        }
+
+        var test = document.getElementById("test");
+        test.innerHTML="ABC";
+         
+    </script>
+    <!-- do your work here -->
+
+<!--https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Function/call-->
+<!--使用 call 來呼叫匿名的函數
+下面這個簡易的例子中，我們做了一個匿名的函數，並用 call 來讓它應用在每個在串列中的物件中. 這個匿名函數的主要用途是加入一個print函數到每個物件上，這個函數可以印出每個物件的index指標。 傳入物件作為 this 的值並不是必要的，但他有解釋的用途。
+
+var animals = [
+  {species: 'Lion', name: 'King'},
+  {species: 'Whale', name: 'Fail'}
+];
+
+for (var i = 0; i < animals.length; i++) {
+  (function (i) { 
+    this.print = function () { 
+      console.log('#' + i  + ' ' + this.species + ': ' + this.name); 
+    } 
+    this.print();
+  }).call(animals[i], i);
+}-->
+
+</body>
+
+</html>

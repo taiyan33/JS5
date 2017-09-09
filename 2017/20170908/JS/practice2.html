@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        var bigObj = {
+        firstName : "Dark" , 
+        lastName : "Liu" , 
+        sex: 'M' , 
+        weight: 80 , 
+        married: true , 
+        workExp:[ { name:'cathay life insurence' , during: 8 } , { name:'cathay united bank' , during: 1} ] , 
+        skill : ['java','SQL','jsp','javascript'] }
+
+var bigObj =['aaa',
+1,
+false,
+{'o1':'o1',
+'o2':'o2'},
+[1,2,3,
+{a1:'a1',
+a2:'a2'}
+]];
+
+    </script>
+</head>
+<body>
+<!--https://stackoverflow.com/questions/15690706/recursively-looping-through-an-object-to-build-a-property-list
+if the property is of primitive type:
+iterate(object, '')-->
+    <!-- do your work here -->
+    <script>
+        //此指令能輸出資訊到頁面上
+        document.writeln('<h1>Practice 2</h1>');
+        // 請在此解析bigObj
+        // function showProps(obj, objName) {
+        // var result = "";
+        // for (var i in obj) {
+        //     if (obj.hasOwnProperty(i)) {
+        //         // result += objName + "." + i + " = " + obj[i] + "\n";
+        //         result += objName + "." + i + " = " + obj[i] + "<BR>";
+        //     }
+        // }
+        // return result;
+        // }
+        
+
+function showProps(obj, stack) {
+    var mystr1='';
+     if (  obj+"" == "[object Object]") { //[Object Array]
+        mystr1+= 'Object:{'+'<BR>';
+        mystr1+=R(obj, stack) + '';
+        mystr1+='}'+'<BR>';
+              return  mystr1; 
+
+    }else if ( obj instanceof Array ) {
+        mystr1+= 'Array:['+'<BR>';
+        mystr1+=R(obj, stack) + '';
+        mystr1+=']'+'<BR>';
+              return  mystr1; 
+
+    } else {
+
+          return   R(obj, "");
+    }
+
+        // return   mystr;
+}
+function R(obj, stack){
+    var mystr='';
+    for (var property in obj) {
+            if (obj.hasOwnProperty(property)) {
+                // if (typeof obj[property] == "object") {
+                    if (  obj[property]+"" == "[object Object]") { //[Object Array]
+                    mystr+= property+' = (Object) :';//+ (obj[property]+"");//+ "<BR>";
+                    mystr+='{'+ "<BR>";
+                    
+                    console.log(property+' = '+ (obj[property]+"") );
+                    console.log('{');
+                    mystr+=R(obj[property], stack + '.' + property);
+                    console.log('}');
+                    mystr+='}'+ "<BR>";
+                }else if ( obj[property] instanceof Array ) {
+                    mystr+= property+' = (Array):' ;//+ '('+( typeof obj[property] ) +') ';
+                    mystr+='['+ "<BR>";
+                    console.log(property+' = (Array)' + '('+( typeof obj[property] ) +') ' );
+                    console.log('[');
+                    mystr+=R(obj[property], stack + '.' + property);
+                    console.log(']');
+                     mystr+=']'+ "<BR>";
+                } 
+                else {
+                     mystr+=property + " =  " + '('+( typeof obj[property] ) +') '+ obj[property]+ "<BR>";
+                    console.log(property + " =   " + '('+( typeof obj[property] ) +') '+ obj[property]);
+                    // $('#output').append($("<div/>").text(stack + '.' + property))
+                    
+                }
+            }
+        }
+
+        // console.log('mystrmystr'+mystr);
+        return   mystr;
+}
+        // console.log( showProps(bigObj, "bigObj" ) );
+
+        // document.body.innerHTML+=showProps(bigObj, "bigObj" );
+
+
+
+
+function checkInput(inputValue, front){
+    var type = typeof(inputValue);
+
+    if(type =="string" || type =="number" || type =="boolean"  ){
+        document.write(front+ "(" +type +") " +inputValue + "<br>");
+    }else if(type =="object"){
+            if(inputValue instanceof Array){
+
+                document.write(front + "(Array)[</br>");
+                for(var i=0; i<inputValue.length;i++){
+                    document.write(front + " "+ i+" =");
+                    checkInput(inputValue[i], front+"&nbsp;&nbsp;&nbsp;&nbsp;");
+                }
+                document.write(front + " ]</br>");
+            }else if(inputValue instanceof Object){
+                document.write(front + "(Object){</br>");
+                for(var key in inputValue ){
+                    document.write(front + " "+ key+" =");
+                    checkInput(inputValue[key], front+"&nbsp;&nbsp;&nbsp;&nbsp;");
+                }
+                document.write(front + " }</br>");
+            }else{
+                 document.write(front + " unknown Object</br>");
+            }
+    }else {
+        document.write(front + " unknown Type</br>");
+    }
+}
+
+
+// }
+ checkInput(bigObj,"&nbsp;&nbsp;");
+    </script>
+    <!-- do your work here -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            dt { width : 300px;}
+        </style>
+    </head>
+<body>
+
+    <table id="theTable">
+   
+    </table>
+    <button type="button" onclick="doAddRow()"  >add One Row </button>
+
+    
+    <!-- do your work here -->
+    <script>
+function TOP(){
+    var trs = document.getElementById("theTable").childNodes;
+    var table = document.getElementById("theTable");
+    var last =table.lastChild;
+    var first = table.firstChild;
+
+    console.log(trs.length);
+    // for (var i=0; i< trs.length;i++){
+            last = table.lastChild;
+            first = table.firstChild;
+            table.insertBefore( this.parentNode.parentNode , first );
+    // }
+
+}
+
+function button(){
+    var trs = document.getElementById("theTable").childNodes;
+    var table = document.getElementById("theTable");
+    var last =table.lastChild;
+    var first = table.firstChild;
+
+    console.log(trs.length);
+    // for (var i=0; i< trs.length;i++){
+
+            table.insertBefore( this.parentNode.parentNode  , last.nextSibling);
+    // }
+
+}
+
+        function Down() {
+            var last = document.getElementById("theTable").lastChild;
+            var table = document.getElementById("theTable");
+            var first = table.firstChild;
+            // document.getElementById("theTable").lastChild.innerHTML="";
+            table.insertBefore( this.parentNode.parentNode.nextSibling ,  this.parentNode.parentNode );
+        }
+
+        function Up() {
+            var last = document.getElementById("theTable").lastChild;
+            var table = document.getElementById("theTable");
+            var first = table.firstChild;
+            // document.getElementById("theTable").lastChild.innerHTML="";
+            
+             table.insertBefore(  this.parentNode.parentNode, this.parentNode.parentNode.previousSibling  );
+        }
+
+function creatB( types ){
+    var b = document.createElement("button");  // input 的 button 用 value ; button 用 innerHTML 顯示名稱
+    if(types==1){
+        b.addEventListener("click", TOP);
+        b.innerHTML="TOp";
+    }else if(types==2){
+        b.addEventListener("click", button);
+        b.innerHTML="button";
+    }else if(types==3){
+        b.addEventListener("click", Down);
+        b.innerHTML="Down";
+    }else if(types==4){
+        b.addEventListener("click", Up);
+        b.innerHTML="Up";
+    }
+
+    return b;
+}
+        function doAddRow(){
+            var table = document.getElementById("theTable");
+            var tr = document.createElement("tr");
+            var td1 = document.createElement("td");
+            var td2 = document.createElement("td");
+var b2_1 = creatB( 1 );
+var b2_2 = creatB( 2 );
+var b2_3 = creatB( 3 );
+var b2_4 = creatB( 4 );
+            td2.appendChild(b2_1);
+            td2.appendChild(b2_2);
+            td2.appendChild(b2_3);
+            td2.appendChild(b2_4);
+
+            var second = new Date().toTimeString();
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            table.appendChild(tr);
+            td1.setAttribute("style","border-style:solid;");
+            td2.setAttribute("style","border-style:solid;");
+            tr.setAttribute("style","border-style:solid;");
+            td1.innerText=second+"_1";
+            // td2.innerText=second+"_2";
+        //     td1.setAttribute("value", second);
+        //     td2.setAttribute("value", second);
+        }
+
+    
+    </script>
+    <!-- do your work here -->
+
+
+</body>
+
+</html>
